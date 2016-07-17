@@ -1,0 +1,18 @@
+﻿@model List<SweetTest.Models.OrderItem>
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>OrderList</p>
+
+@foreach (var item in Model.GroupBy(g => g.UserMail))
+{
+     
+    foreach (var order in item.OrderByDescending(i=>i.OrderDate).Take(1) ) { 
+     
+     <span>  @order.OrderDate.ToString("HH:mm dd-MM-yyyy") @order.UserName заказал миньона уже @item.Count().ToString() раз</span><br/>
+
+    }
+    }
